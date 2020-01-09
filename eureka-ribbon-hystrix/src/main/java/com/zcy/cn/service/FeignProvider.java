@@ -1,0 +1,1 @@
+package com.zcy.cn.service;import org.springframework.cloud.openfeign.FeignClient;import org.springframework.web.bind.annotation.GetMapping;/** * @author 朱朝阳 * @date 2020/1/9 17:12 */@FeignClient(name = "eureka-provider")public interface FeignProvider {    @GetMapping("/provider")    String provider();}
