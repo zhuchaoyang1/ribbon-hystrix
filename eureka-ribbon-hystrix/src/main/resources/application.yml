@@ -27,3 +27,25 @@ eureka:
 #    ReadTimeout: 1000 #请求处理的超时时间
 #    OkToRetryOnAllOperations: true #对所有请求都进行重试
 #    MaxAutoRetriesNextServer: 2 #切换实例的重试次数
+
+
+#    Hystrix熔断机制   HyStrix相关所有配置连接： https://www.cnblogs.com/duan2/p/9302431.html
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 12000    # 根据Ribbon的超时时间设置 且Ribbon的Max重试为1  所以 6000 * (1+1)
+
+
+ribbon:
+  ReadTimeout: 6000                 # 针对每一个Broker设置的时间
+  ConnectTimeout: 6000              # 针对每一个Broker设置的时间
+  OkToRetryOnAllOperations: true
+  MaxAutoRetriesNextServer: 1
